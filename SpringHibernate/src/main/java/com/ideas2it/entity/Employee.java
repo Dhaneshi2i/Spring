@@ -40,6 +40,9 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getFirstName() {
         return firstName;
     }

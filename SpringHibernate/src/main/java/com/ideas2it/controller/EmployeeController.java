@@ -31,6 +31,18 @@ public class EmployeeController {
         return new ModelAndView("addition","firstname", employee.getFirstName());
     }
 
+    //@RequestMapping(value = "/registerProcess",method =RequestMethod.POST,consumes = {"*/*"})
+    /*public ModelAndView addEmployee(HttpServletRequest request, HttpServletResponse response,
+                                    @ModelAttribute ("employee") Employee employee) {
+        if (employee.getEmployeeId()== null) {
+            employeeService.saveOrUpdateEmployee(employee);
+        }
+        else {
+            employeeService.update(employee);
+        }
+        return new ModelAndView("addition","firstname", employee.getFirstName());
+    }*/
+
     @RequestMapping(value="/viewEmployee")
     public String viewEmployee(Model employee){
         List<Employee> employees = employeeService.getEmployee();
@@ -38,9 +50,15 @@ public class EmployeeController {
         return "viewEmployees";
     }
 
-    @RequestMapping(value="/displayEmployeeById",method = RequestMethod.GET)
-    public ModelAndView displayEmployeeById(HttpServletRequest request,HttpServletResponse response) {
+    @RequestMapping(value="/displayEmployeeById")
+    public ModelAndView displayEmployeeById() {
         return new ModelAndView("getEmployeeById","employee",new Employee());
+    }
+
+    @RequestMapping("/getEmployeeById")
+    public ModelAndView displayEmployeeById(@ModelAttribute("employee") Employee selectedEmployee) {
+        Employee employee = employeeService.getEmployeeById(selectedEmployee.getEmployeeId());
+        return new ModelAndView("displayById","employee",employee);
     }
     @RequestMapping(value = "/updateEmployee",method = RequestMethod.GET)
     public ModelAndView updateEmployee(HttpServletRequest request,HttpServletResponse response) {
@@ -52,7 +70,17 @@ public class EmployeeController {
                                        @ModelAttribute("employee") Employee employee){
         ModelAndView modelAndView = new ModelAndView();
         employeeService.update(employee);
-        //modelAndView.setViewName("updated");
         return new ModelAndView ("updated", "firstname", employee.getFirstName());
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView deleteEmployee(HttpServletRequest request,HttpServletResponse response) {
+        return new ModelAndView("delete","employee",new Employee());
+    }
+
+    @RequestMapping(value = "/deleteEmployee",method = RequestMethod.POST)
+    public ModelAndView removeEmployee(@ModelAttribute ("employee") Employee employee) {
+        employeeService.removeEmployee(employee);
+        return new ModelAndView("deleted");
     }
 }

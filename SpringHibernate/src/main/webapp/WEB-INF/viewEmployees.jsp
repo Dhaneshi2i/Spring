@@ -2,8 +2,8 @@
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
       <table border="2" width="70%">
-      <tr><th>employeeId</th><th>employeeFirstName</th><th>employeeLastName</th><th>employeePhoneNumber</th><th>employeeEmailId</th></tr>
-   <c:forEach var="employee" items="${list}" >
+      <tr><th>employeeId</th><th>employeeFirstName</th><th>employeeLastName</th></tr>
+   <c:forEach var="employees" items="${list}" >
    <tr>
     <td>${employees.employeeId}</td><br>
     <td>${employees.employeeFirstName}</td><br>

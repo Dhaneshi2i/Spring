@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public void update(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
-        session.persist(employee);
+        session.update(employee);
+    }
+    @Transactional
+    @Override
+    public void removeEmployee(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(employee);
     }
 }

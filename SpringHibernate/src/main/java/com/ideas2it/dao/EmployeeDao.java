@@ -2,6 +2,7 @@ package com.ideas2it.dao;
 
 import com.ideas2it.entity.Employee;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,7 +12,12 @@ public interface EmployeeDao {
 
     public List<Employee> getEmployee();
 
+    @Transactional
     public Employee getEmployeeById(String employeeId);
 
     public void update(Employee employee);
+
+    public void removeEmployee(Employee employee);
+
+
 }

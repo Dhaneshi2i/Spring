@@ -15,7 +15,7 @@
              <table align="center">
              <tr>
              <td>
-             <form:label path="employeeId">Employeeid</form:label>
+             <form:label path="employeeId">EmployeeId</form:label>
                </td>
                <td>
               <form:input path="employeeId" name="employeeId" id="employeeId" />
@@ -25,7 +25,7 @@
                 <tr>
                   <td></td>
                  <td>
-                  <form:button id="register" name="register">Register</form:button>
+                  <form:button id="Display" name="Display">Display</form:button>
                   </td>
                     </tr>
                  <tr></tr>
