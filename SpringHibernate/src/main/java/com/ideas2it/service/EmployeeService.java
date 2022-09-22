@@ -1,21 +1,25 @@
 package com.ideas2it.service;
 
 import com.ideas2it.entity.Employee;
-import org.springframework.stereotype.Component;
+import com.ideas2it.entity.Trainee;
+import com.ideas2it.entity.Trainer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-@Component
 @Service
-public interface EmployeeService {
-    public void saveOrUpdateEmployee(Employee employee);
+public interface EmployeeService<T extends Employee> {
 
-    public List<Employee> getEmployee();
+    public void saveEmployee(T employee);
+
+    //public void saveOrUpdateEmployee(Employee employee);
+
+    public List<Trainee> getTraineeEmployees();
+
+    public List<Trainer> getTrainerEmployees();
 
     public Employee getEmployeeById(String employeeId);
 
     public void update(Employee employee);
 
-    void removeEmployee(Employee employee);
+    void removeEmployee(String employeeId);
 }

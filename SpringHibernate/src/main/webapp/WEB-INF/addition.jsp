@@ -10,8 +10,7 @@
     <body>
         <table>
             <tr>
-                <td>Employee ${firstname} Added successfully</td>
-                <td>Result is : <%= request.getAttribute("employee") %></td?
+                <td>Employee ${firstname} ${secondName} Added successfully</td>
             </tr>
             <tr>
             </tr>

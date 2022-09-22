@@ -1,23 +1,28 @@
 package com.ideas2it.dao;
 
 import com.ideas2it.entity.Employee;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import com.ideas2it.entity.Trainee;
+import com.ideas2it.entity.Trainer;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
-public interface EmployeeDao {
-    public void saveOrUpdateEmployee(Employee employee);
+@Repository
+public interface EmployeeDao<T extends Employee> {
 
-    public List<Employee> getEmployee();
+    void saveEmployee(T employee);
 
-    @Transactional
+    //public void saveOrUpdateEmployee(Employee employee);
+
+    public List<Trainee> getTraineeEmployees();
+
+    public List<Trainer> getTrainerEmployees();
+
     public Employee getEmployeeById(String employeeId);
 
     public void update(Employee employee);
 
-    public void removeEmployee(Employee employee);
+    public void removeEmployee(String employeeId);
 
 
 }

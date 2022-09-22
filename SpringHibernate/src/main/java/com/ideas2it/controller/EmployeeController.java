@@ -1,35 +1,102 @@
 package com.ideas2it.controller;
 
-import com.ideas2it.entity.Employee;
+import com.ideas2it.entity.Trainee;
+import com.ideas2it.entity.Trainer;
 import com.ideas2it.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 public class EmployeeController {
-    @Autowired
-    EmployeeService employeeService;
 
-    @RequestMapping(value = "/employeeRegister",method = RequestMethod.GET)
-    public ModelAndView createEmployee(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("register","employee",new Employee());
+    @Autowired
+    EmployeeService  employeeService;
+
+    @RequestMapping(value = "/traineeRegister")
+    public ModelAndView createTrainee() {
+        return new ModelAndView("traineeRegister","trainee",new Trainee());
     }
 
-    @RequestMapping(value = "/registerProcess",method =RequestMethod.POST,consumes = {"*/*"})
-    public ModelAndView addEmployee(HttpServletRequest request, HttpServletResponse response,
-                                    @ModelAttribute ("employee") Employee employee) {
+    @PostMapping(value = "/saveTrainee")
+    public ModelAndView addTrainee(@ModelAttribute("trainee") Trainee trainee) {
+        employeeService.saveEmployee(trainee);
+        return new ModelAndView("addition","firstname",trainee.getFirstName());
+    }
+
+    /*@PostMapping(value = "/saveTrainee")
+    public String addTrainee(Model model,@ModelAttribute ("trainee") Trainee trainee) {
+        employeeService.saveEmployee(trainee);
+        model.addAttribute("firstName",trainee.getFirstName());
+        //return "redirect:/viewTrainees";
+        return "addition";
+    }*/
+
+    @RequestMapping(value = "/trainerRegister")
+    public String createTrainer(Model model) {
+        model.addAttribute("trainer",new Trainer());
+        return"trainerRegister";
+    }
+
+    @PostMapping(value = "/saveTrainer")
+    public ModelAndView addTrainer(@ModelAttribute ("trainer") Trainer trainer) {
+        employeeService.saveEmployee(trainer);
+        return new ModelAndView("addition","firstname", trainer.getFirstName());
+    }
+
+    @GetMapping("viewTraineeEmployee")
+    public String viewTrainee(Model model) {
+        List<Trainee> trainees = (List<Trainee>) employeeService.getTraineeEmployees();
+        model.addAttribute("trainees",trainees);
+        return "viewTrainees";
+    }
+    @GetMapping("viewTrainerEmployee")
+    public String viewTrainer(Model model) {
+        List<Trainer> trainers = (List<Trainer>) employeeService.getTrainerEmployees();
+        model.addAttribute("trainers",trainers);
+        return "viewTrainers";
+    }
+
+    @RequestMapping(value = "/editTrainee/{employeeId}")
+    public String updateTrainee(@PathVariable String employeeId, Model model) {
+        Trainee trainee = (Trainee) employeeService.getEmployeeById(employeeId);
+        model.addAttribute("command",trainee);
+        return "traineeEditForm";
+    }
+
+    @PutMapping(value = "editAndSaveTrainee")
+    public String updateTrainee(@ModelAttribute("trainee") Trainee trainee) {
+        employeeService.update(trainee);
+        return "updated";
+    }
+
+    @RequestMapping(value = "/editTrainer/{employeeId}")
+    public String updateTrainer(@PathVariable String employeeId, Model model) {
+        Trainer trainer = (Trainer) employeeService.getEmployeeById(employeeId);
+        model.addAttribute("command",trainer);
+        return "trainerEditForm";
+    }
+
+    @PutMapping(value = "editAndSaveTrainer")
+    public String updateTrainer(@ModelAttribute("trainer") Trainer trainer) {
+        employeeService.update(trainer);
+        return "updated";
+    }
+
+    @RequestMapping(value = "/deleteTrainee/{employeeId}")
+    public String delete(@PathVariable String employeeId) {
+        employeeService.removeEmployee(employeeId);
+        return "resirect:/viewTrainees";
+    }
+    /*@PostMapping(value = "/registerProcess")
+    public ModelAndView addEmployee(@ModelAttribute ("employee") Employee employee) {
         employeeService.saveOrUpdateEmployee(employee);
         return new ModelAndView("addition","firstname", employee.getFirstName());
-    }
+    }*/
 
     //@RequestMapping(value = "/registerProcess",method =RequestMethod.POST,consumes = {"*/*"})
     /*public ModelAndView addEmployee(HttpServletRequest request, HttpServletResponse response,
@@ -41,13 +108,12 @@ public class EmployeeController {
             employeeService.update(employee);
         }
         return new ModelAndView("addition","firstname", employee.getFirstName());
-    }*/
+    }
 
     @RequestMapping(value="/viewEmployee")
-    public String viewEmployee(Model employee){
-        List<Employee> employees = employeeService.getEmployee();
-        employee.addAttribute("list",employees);
-        return "viewEmployees";
+    public ModelAndView viewEmployee(){
+        List<Employee> employees = employeeService.getEmployees();
+        return new ModelAndView("viewEmployees","employees",employees);
     }
 
     @RequestMapping(value="/displayEmployeeById")
@@ -82,5 +148,5 @@ public class EmployeeController {
     public ModelAndView removeEmployee(@ModelAttribute ("employee") Employee employee) {
         employeeService.removeEmployee(employee);
         return new ModelAndView("deleted");
-    }
+    }*/
 }

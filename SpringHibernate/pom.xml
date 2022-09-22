@@ -79,6 +79,11 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.10.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>SpringHibernate</finalName>
@@ -93,4 +98,9 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <spring.version>5.2.8.RELEASE</spring.version>
+    <hibernate.version>5.4.1.Final</hibernate.version>
+    <mysql.connector.version>5.1.45</mysql.connector.version>
+  </properties>
 </project>

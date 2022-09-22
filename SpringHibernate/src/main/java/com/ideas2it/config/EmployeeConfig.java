@@ -10,9 +10,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("com.ideas2it")
+@EnableTransactionManagement
+@ComponentScan(basePackages = {"com.ideas2it"})
 public class EmployeeConfig {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -22,24 +24,23 @@ public class EmployeeConfig {
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); //com.mysql.cj.jdbc.Driver com.mysql.jdbc.Driver
         dataSource.setUrl("jdbc:mysql://localhost:3306/spring");
         dataSource.setUsername("root");
         dataSource.setPassword("sanjaiKing@2022");
         return dataSource;
     }
 
-    @Bean
+    /*@Bean
     public PlatformTransactionManager hibernateTransactionManager() {
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
-    }
+    }*/
 
     private final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
@@ -48,5 +49,11 @@ public class EmployeeConfig {
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto","update");
         hibernateProperties.setProperty("hibernate.connection.driver_class","com.mysql.jdbc.Driver");
         return hibernateProperties;
+    }
+    @Bean
+    public HibernateTransactionManager getTransactionManager() {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+        return transactionManager;
     }
 }

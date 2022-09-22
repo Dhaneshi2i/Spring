@@ -3,8 +3,10 @@
 
 
 <table border="2" width="70%" cell-padding="2">
-<tr><th>id</th><th>firstName</th><th>lastName</th><th>email</th></tr>
+<tr><th>id</th><th>firstName</th><th>lastName</th></tr>
    <tr>
+   Result is : <%= request.getAttribute("employee") %>
+
    <td>${employee.id}</td>
    <td>${employee.firstName}</td>
    <td>${employee.lastName}</td>
