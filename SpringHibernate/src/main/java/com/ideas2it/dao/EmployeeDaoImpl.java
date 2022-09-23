@@ -41,8 +41,6 @@ public class EmployeeDaoImpl<T extends Employee> implements EmployeeDao<T> {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("findTrainee");
         query.setParameter("isActiveEmployee", false);
-        //trainees = query.getResultList();
-        //return (List<Trainee>) trainees;
         return (List<Trainee>) query.getResultList();
     }
 
@@ -53,17 +51,37 @@ public class EmployeeDaoImpl<T extends Employee> implements EmployeeDao<T> {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("findTrainer");
         query.setParameter("isActiveEmployee", false);
-        //trainers = query.getResultList();
-        //return (List<Trainer>) trainers;
         return (List<Trainer>)query.getResultList();
     }
 
-    @Transactional
     @Override
+    @Transactional
+    public Trainee getTraineeById(String employeeId) {
+        Session session = sessionFactory.getCurrentSession();
+        //Query query = (Query) session.getNamedQuery("findTraineeById");
+        Query query = session.createQuery("from Trainee where employeeId = :employeeId AND isActiveEmployee = :isActiveEmployee");
+        query.setParameter("employeeId", employeeId);
+        query.setParameter("isActiveEmployee", false);
+        return  (Trainee) query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public Trainer getTrainerById(String employeeId) {
+        Session session = sessionFactory.getCurrentSession();
+        //Query query = (Query) session.getNamedQuery("findTrainerById");
+        Query query = session.createQuery("from Trainer where employeeId = :employeeId AND isActiveEmployee = :isActiveEmployee");
+        //Trainer trainer = session.get(Trainer.class,trainerId);
+        //return (!trainer.getActiveEmployee() ? trainer : null);
+        query.setParameter("employeeId", employeeId);
+        query.setParameter("isActiveEmployee", false);
+        return  (Trainer) query.getSingleResult();
+    }
+
+    /*@Transactional
     public Employee getEmployeeById(String employeeId) {
         Employee selectedEmployee = null;
         try (Session session = sessionFactory.getCurrentSession()) {
-            if (employee instanceof Trainee) {
                 Query query = (Query) session.getNamedQuery("findTraineeById");
                 query.setParameter("employeeId", employeeId);
                 query.setParameter("isActiveEmployee", false);
@@ -81,20 +99,35 @@ public class EmployeeDaoImpl<T extends Employee> implements EmployeeDao<T> {
             System.out.println(noResultException + "No such result");
         }
         return selectedEmployee;
-    }
+    }*/
+
     @Transactional
     @Override
-    public void update(Employee employee) {
+    public void updateTrainee(Trainee trainee) {
+        System.out.println(trainee.getFirstName());
         Session session = sessionFactory.getCurrentSession();
-        session.update(employee);
+        session.update(trainee);
     }
 
     @Transactional
     @Override
-    public void removeEmployee(String employeeId) {
+    public void updateTrainer(Trainer trainer) {
         Session session = sessionFactory.getCurrentSession();
-        Employee employee = getEmployeeById(employeeId);
-        session.delete(employee);
+        session.update(trainer);
+    }
+
+    @Transactional
+    @Override
+    public void removeTraineeEmployee(Trainee trainee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(trainee);
+    }
+
+    @Transactional
+    @Override
+    public void removeTrainerEmployee(Trainer trainer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(trainer);
     }
 
 }

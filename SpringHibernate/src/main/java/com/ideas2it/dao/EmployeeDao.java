@@ -12,17 +12,21 @@ public interface EmployeeDao<T extends Employee> {
 
     void saveEmployee(T employee);
 
-    //public void saveOrUpdateEmployee(Employee employee);
+    List<Trainee> getTraineeEmployees();
 
-    public List<Trainee> getTraineeEmployees();
+    List<Trainer> getTrainerEmployees();
 
-    public List<Trainer> getTrainerEmployees();
+    Trainee getTraineeById(String employeeId);
 
-    public Employee getEmployeeById(String employeeId);
+    Trainer getTrainerById(String employeeId);
 
-    public void update(Employee employee);
+    void updateTrainee(Trainee trainee);
 
-    public void removeEmployee(String employeeId);
+    void updateTrainer(Trainer trainer);
 
+    void removeTraineeEmployee(Trainee trainee);
 
+    void removeTrainerEmployee(Trainer trainer);
+
+   // public void update( Employee employee);
 }

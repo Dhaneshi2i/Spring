@@ -28,12 +28,6 @@ public class EmployeeServiceImpl<T extends Employee> implements EmployeeService<
         }
     }
 
-    /*@Override
-    @Transactional
-    public void saveOrUpdateEmployee(Employee employee){
-        employeeDao.saveOrUpdateEmployee(employee);
-    }*/
-
     @Override
     @Transactional
     public List<Trainee> getTraineeEmployees(){
@@ -45,23 +39,51 @@ public class EmployeeServiceImpl<T extends Employee> implements EmployeeService<
     public List<Trainer> getTrainerEmployees(){
         return (List<Trainer>) employeeDao.getTrainerEmployees();
     }
+
     @Override
-    @Transactional
-    public Employee getEmployeeById(String employeeId){
-        return employeeDao.getEmployeeById(employeeId);
+    public Trainee getTraineeById(String employeeId) {
+        return (Trainee) employeeDao.getTraineeById(employeeId);
     }
 
     @Override
-    @Transactional
-    public void update(Employee employee){
-        Employee selectedEmployee = employeeDao.getEmployeeById(employee.getEmployeeId());
-        selectedEmployee.setFirstName(employee.getFirstName());
-        employeeDao.update(selectedEmployee);
+    public Trainer getTrainerById(String employeeId) {
+        return (Trainer) employeeDao.getTrainerById(employeeId);
+    }
+
+   /* @Override
+    public void updateTrainee(Trainee trainee){
+        employeeDao.updateTrainee(trainee);
     }
 
     @Override
-    @Transactional
-    public void removeEmployee(String employeeId) {
-        employeeDao.removeEmployee(employeeId);
+    public void updateTrainer(Trainer trainer) {
+        employeeDao.updateTrainer(trainer);
+    }*/
+
+
+    @Override
+    public void updateTrainee( Trainee trainee){
+        Trainee selectedTrainee = employeeDao.getTraineeById(trainee.getEmployeeId());
+        selectedTrainee.setFirstName(trainee.getFirstName());
+        employeeDao.updateTrainee(selectedTrainee);
+    }
+
+    @Override
+    public void updateTrainer(Trainer trainer) {
+        Trainer selectedTrainer = employeeDao.getTrainerById(trainer.getEmployeeId());
+        selectedTrainer.setFirstName(trainer.getFirstName());
+        employeeDao.updateTrainer(selectedTrainer);
+    }
+
+    @Override
+    public void removeTraineeEmployee(Trainee trainee) {
+        //Trainee trainee = employeeDao.getTraineeById(employeeId);
+        employeeDao.removeTraineeEmployee(trainee);
+    }
+
+    @Override
+    public void removeTrainerEmployee(Trainer trainer) {
+        //Trainer trainer = employeeDao.getTrainerById(employeeId);
+        employeeDao.removeTrainerEmployee(trainer);
     }
 }

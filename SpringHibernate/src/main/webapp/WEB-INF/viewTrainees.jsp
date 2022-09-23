@@ -10,8 +10,8 @@
    <td>${emp.firstName}</td>
    <td>${emp.lastName}</td>
    <td>${emp.reportingManager}</td>
-   <td><a href="editTrainee/${emp.employeeId}">Edit</a></td>
-   <td><a href="deleteTrainee/{emp.employeeId}">Delete</a></td>
+   <td><a href="editTrainee/${emp.traineeId}">Edit</a></td>
+   <td><a href="deleteTrainee/{emp.traineeId}">Delete</a></td>
    </tr>
    </c:forEach>
    </table>

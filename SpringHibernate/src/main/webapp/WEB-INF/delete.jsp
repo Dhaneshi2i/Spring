@@ -9,7 +9,7 @@
         </head>
         <body>
             <h2>Delete an employee</h2>
-            <form:form id="regForm" modelAttribute="employee" action="deleteEmployee" method="post" >
+            <form:form id="regForm" modelAttribute="trainee" action="deleteEmployee" method="post" >
 
              <table align="center">
              <tr>

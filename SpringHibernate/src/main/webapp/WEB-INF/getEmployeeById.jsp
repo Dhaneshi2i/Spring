@@ -10,7 +10,7 @@
 
         <body>
             <h2>To get Trainer details from their Id</h2>
-            <form:form id="regForm" modelAttribute="employee" action="getEmployeeById" method="post" >
+            <form:form id="regForm" modelAttribute="employee" action="getTraineeById" method="post" >
 
              <table align="center">
              <tr>

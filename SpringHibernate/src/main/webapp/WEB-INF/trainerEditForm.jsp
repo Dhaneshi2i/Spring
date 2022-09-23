@@ -2,11 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
         <h1>Edit Employee</h1>
-       <form:form method="PUT" action="/SpringMVCCRUDSimple/editAndSave">
+       <form:form method="PUT" action="/springHibernate/editAndSaveTrainer">
         <table >
         <tr>
         <td></td>
-         <td><form:hidden  path="employeeId" /></td>
+         <td><form:hidden  path="trainer_id" /></td>
          </tr>
          <tr>
           <td>First Name : </td>

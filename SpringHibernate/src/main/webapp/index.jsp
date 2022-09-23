@@ -30,8 +30,8 @@
 <td><a href="updateTrainer">Update Trainer</a>
 </td>
 
-<h4>To delete a employee click here </h4>
-<td><a href="delete">Delete Employee</a>
+<h4>To delete a trainee click here </h4>
+<td><a href="traineeDelete">Delete Trainee</a>
 </td>
 
 </body>

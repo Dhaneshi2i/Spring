@@ -11,7 +11,7 @@ import javax.persistence.*;
         ),
                 @NamedQuery(
                         name = "findTraineeById",
-                        query = "from Trainee where employeeId = :employeeId AND isActiveEmployee = :isActiveEmployee"
+                        query = "from Trainee where trainee_id = :trainee_id AND isActiveEmployee = :isActiveEmployee"
                 )}
 )
 @Entity

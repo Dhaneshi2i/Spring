@@ -17,9 +17,21 @@ public interface EmployeeService<T extends Employee> {
 
     public List<Trainer> getTrainerEmployees();
 
-    public Employee getEmployeeById(String employeeId);
+    public Trainee getTraineeById(String employeeId);
 
-    public void update(Employee employee);
+    public Trainer getTrainerById(String employeeId);
 
-    void removeEmployee(String employeeId);
+    public void updateTrainee(Trainee trainee);
+
+    public void updateTrainer(Trainer trainer);
+
+    //void removeTraineeEmployee(int trainee_id);
+
+    //void removeTrainerEmployee(int trainer_id);
+
+    //void update(Employee employee);
+
+    void removeTraineeEmployee(Trainee trainee);
+
+    void removeTrainerEmployee(Trainer trainer);
 }

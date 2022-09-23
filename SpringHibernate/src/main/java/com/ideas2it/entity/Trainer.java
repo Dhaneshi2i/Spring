@@ -12,7 +12,7 @@ import javax.persistence.*;
         ),
                 @NamedQuery(
                         name = "findTrainerById",
-                        query = "from Trainer where employeeId = :employeeId AND isActiveEmployee = :isActiveEmployee"
+                        query = "from Trainer where trainer_id = :trainer_id AND isActiveEmployee = :isActiveEmployee"
                 )}
 )
 @Table(name = "Trainer")

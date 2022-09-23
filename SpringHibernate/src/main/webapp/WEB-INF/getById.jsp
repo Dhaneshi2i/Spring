@@ -10,7 +10,7 @@
 
         <body>
             <h2>For Trainer fill here</h2>
-            <form:form id="regForm" modelAttribute="employee" action="employeeUpdate" method="post" >
+            <form:form id="regForm" modelAttribute="trainee" action="traineeUpdate" method="post" >
 
              <table align="center">
              <tr>
