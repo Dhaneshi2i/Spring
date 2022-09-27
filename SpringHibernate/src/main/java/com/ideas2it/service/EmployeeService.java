@@ -9,29 +9,18 @@ import java.util.List;
 @Service
 public interface EmployeeService<T extends Employee> {
 
-    public void saveEmployee(T employee);
+    void saveEmployee(T employee);
 
-    //public void saveOrUpdateEmployee(Employee employee);
+    List<Trainee> getTraineeEmployees();
 
-    public List<Trainee> getTraineeEmployees();
+    List<Trainer> getTrainerEmployees();
 
-    public List<Trainer> getTrainerEmployees();
+    Trainee getTraineeById(String employeeId);
 
-    public Trainee getTraineeById(String employeeId);
+    Trainer getTrainerById(String employeeId);
 
-    public Trainer getTrainerById(String employeeId);
+    void updateTrainee(Trainee trainee);
+    void updateTrainer(Trainer trainer);
 
-    public void updateTrainee(Trainee trainee);
-
-    public void updateTrainer(Trainer trainer);
-
-    //void removeTraineeEmployee(int trainee_id);
-
-    //void removeTrainerEmployee(int trainer_id);
-
-    //void update(Employee employee);
-
-    void removeTraineeEmployee(Trainee trainee);
-
-    void removeTrainerEmployee(Trainer trainer);
+    Trainee getByTraineeId(int traineeId);
 }

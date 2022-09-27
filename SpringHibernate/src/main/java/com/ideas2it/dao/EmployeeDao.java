@@ -24,9 +24,7 @@ public interface EmployeeDao<T extends Employee> {
 
     void updateTrainer(Trainer trainer);
 
-    void removeTraineeEmployee(Trainee trainee);
+    Trainee getByTraineeId(int traineeId);
 
-    void removeTrainerEmployee(Trainer trainer);
-
-   // public void update( Employee employee);
+    //Trainer getByTrainerId(int trainerId);
 }

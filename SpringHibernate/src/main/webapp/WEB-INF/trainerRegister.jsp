@@ -45,6 +45,22 @@
                          </td>
                          </tr>
                     <tr>
+                      <td>
+                        <form:label path="dateOfBirth">Date of birth</form:label>
+                      </td>
+                      <td>
+                        <form:input type="date" path="dateOfBirth" name="dateOfBirth" id="dateOfBirth" />
+                      </td>
+                      </tr>
+                      <tr>
+                      <td>
+                        <form:label path="dateOfJoining">Date of joining</form:label>
+                      </td>
+                      <td>
+                        <form:input type="date" path="dateOfJoining" name="dateOfJoining" id="dateOfJoining" />
+                      </td>
+                      </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <form:button id="register" name="register">Register</form:button>

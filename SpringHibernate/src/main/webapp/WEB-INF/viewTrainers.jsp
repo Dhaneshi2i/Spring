@@ -10,10 +10,11 @@
    <td>${emp.firstName}</td>
    <td>${emp.lastName}</td>
    <td>${emp.projectsWorked}</td>
-   <td><a href="editTrainer/${emp.trainer_id}">Edit</a></td>
-   <td><a href="deleteTrainer/${emp.trainer_id}">Delete</a></td>
+   <td><a href="editTrainer/${emp.trainerId}">Edit</a></td>
+   <td><a href="deleteTrainer/${emp.trainerId}">Delete</a></td>
    </tr>
    </c:forEach>
    </table>
    <br/>
    <a href="trainerRegister">Add new a trainer</a>
+   <a href="index.jsp">Home</a>

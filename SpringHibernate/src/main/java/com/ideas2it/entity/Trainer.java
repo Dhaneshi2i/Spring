@@ -3,28 +3,39 @@ package com.ideas2it.entity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NamedQueries(
-        { @NamedQuery(
+        {
+                @NamedQuery(
                 name = "findTrainer",
                 query = "from Trainer where isActiveEmployee = :isActiveEmployee"
         ),
                 @NamedQuery(
-                        name = "findTrainerById",
-                        query = "from Trainer where trainer_id = :trainer_id AND isActiveEmployee = :isActiveEmployee"
-                )}
+                name = "findTrainerById",
+                query = "from Trainer where employeeId = :employeeId AND isActiveEmployee = :isActiveEmployee"
+        ),
+                @NamedQuery(
+                name = "findByTrainerId",
+                query = "from Trainer where trainer_id = :trainer_id AND isActiveEmployee = :isActiveEmployee"
+                )
+        }
 )
 @Table(name = "Trainer")
 public class Trainer extends Employee{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Trainer_GEN")
     @SequenceGenerator(name = "Trainer_GEN", sequenceName = "Trainer_SEQ")
-    @Column(name = "trainer_id", nullable = false)
+    @Column(nullable = false)
     private int trainerId;
 
-    @Column
     private byte projectsWorked;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Link_employees",
+            joinColumns =@JoinColumn(name="TrainerId"),
+            inverseJoinColumns =@JoinColumn(name="TraineeId"))
+    private List<Trainee> trainees;
 
     public int getTrainerId() {
         return trainerId;
@@ -40,5 +51,13 @@ public class Trainer extends Employee{
 
     public byte getProjectsWorked() {
         return projectsWorked;
+    }
+
+    public List<Trainee> getTrainees() {
+        return trainees;
+    }
+
+    public void setTrainees(List<Trainee> trainees) {
+        this.trainees = trainees;
     }
 }
