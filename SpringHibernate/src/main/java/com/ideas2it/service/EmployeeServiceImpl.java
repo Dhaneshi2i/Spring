@@ -19,6 +19,10 @@ public class EmployeeServiceImpl<T extends Employee> implements EmployeeService<
     @Autowired
     private EmployeeDao  employeeDao;
 
+    public EmployeeServiceImpl(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
+
     @Override
     public void saveEmployee(T employee) {
         if (employee instanceof Trainee) {

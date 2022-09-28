@@ -5,12 +5,12 @@
                  <center><h1>Welcome To ideas2it Employee Management Portal</h1></center>
                  <tr>
 
-                    <td><a href="traineeRegister">Employee Register</a></td>
+                    <td><a href="traineeRegister">Trainee Register</a></td>
 
                  </tr>
                  <tr>
 
-                   <td><a href="trainerRegister">Employee Register</a></td>
+                   <td><a href="trainerRegister">Trainer Register</a></td>
 
                  </tr>
                  <tr>

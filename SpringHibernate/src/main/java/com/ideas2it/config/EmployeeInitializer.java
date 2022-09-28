@@ -1,6 +1,9 @@
 package com.ideas2it.config;
 
+import com.ideas2it.filter.MyFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class EmployeeInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -16,5 +19,10 @@ public class EmployeeInitializer extends AbstractAnnotationConfigDispatcherServl
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
+    }
+
+    @Override
+    protected Filter[] getServletFilters(){
+        return new Filter[]{new MyFilter()};
     }
 }
