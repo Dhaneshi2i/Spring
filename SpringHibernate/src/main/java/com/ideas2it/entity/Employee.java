@@ -1,17 +1,21 @@
 package com.ideas2it.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 
 @MappedSuperclass
 public class Employee {
-
+    @NotNull
     private String employeeId;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
-
+    @NotNull
     private LocalDate dateOfBirth;
-
+    @NotNull
     private LocalDate dateOfJoining;
     private boolean isActiveEmployee = false;
 

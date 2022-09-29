@@ -1,7 +1,6 @@
 package com.ideas2it.entity;
 
-import org.springframework.stereotype.Component;
-
+import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,6 +29,7 @@ public class Trainee extends Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private int traineeId;
+    @NotNull
     private String reportingManager;
     @ManyToMany(mappedBy = "trainees", fetch = FetchType.EAGER)
     private List<Trainer> trainers;

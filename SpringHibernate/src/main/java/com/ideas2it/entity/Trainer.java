@@ -1,5 +1,6 @@
 package com.ideas2it.entity;
 
+import com.sun.istack.internal.NotNull;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class Trainer extends Employee{
     @SequenceGenerator(name = "Trainer_GEN", sequenceName = "Trainer_SEQ")
     @Column(nullable = false)
     private int trainerId;
-
+    @NotNull
     private byte projectsWorked;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Link_employees",

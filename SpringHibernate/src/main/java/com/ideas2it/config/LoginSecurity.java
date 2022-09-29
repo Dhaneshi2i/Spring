@@ -5,5 +5,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-public class LoginSecurity extends {
+public class LoginSecurity {
 }
